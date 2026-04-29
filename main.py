@@ -24,7 +24,7 @@ async def root():
     return {"message": "Welcome to the Squad Payment API"}
 
 @app.post("/initiate-payment")
-async def initiate_payment(amount: int, email: str):
+async def initiate_payment(amount: int, email: str, is_recurring: bool = False):
     print("Initiating payment...")
     url = f"{BASE_URL}/transaction/initiate"
     
@@ -39,6 +39,7 @@ async def initiate_payment(amount: int, email: str):
         "email": email,
         "currency": "NGN",
         "initiate_type": "inline",
+        "is_recurring": is_recurring,
         "callback_url": "https://linkedin.com/in/ahmadaroyehun"
         # "callback_url": "http://localhost:3000/callback" 
     }
